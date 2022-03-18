@@ -1,0 +1,44 @@
+<div class="container">
+  <h2 *ngIf="hotels && hotels.length > 0">{{ title }}</h2>
+
+  <button class="btn btn-success my-5 d-flex" (click)="toggleViewNews()">
+    <span class="material-icons">
+      {{ showBadge ? "visibility-off" : "visibility" }}
+    </span>
+
+    <span>{{ showBadge ? "wrappe" : "Display" }} price</span>
+  </button>
+
+
+<div class="row my-3">
+  <div class="col-md-4">
+    <span>Filtre actuel:</span>
+    <b> {{hotelFilter}} </b>
+  </div>
+  <div class="col-md-8">
+<input type="text" class="form-control" [(ngModel)]="hotelFilter" >
+  </div>
+</div>
+
+  <div class="row">
+    <div class="card m-3" style="width: 18rem" *ngFor="let hotel of hotels">
+      <img
+        [src]="hotel.imgUrl"
+        [title]="hotel.name"
+        class="card-img-top"
+        alt=""
+        height="150px"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ hotel.name }}{{ hotel.hotelId }}</h5>
+        <p class="card-text">
+          {{ hotel.description }}
+        </p>
+        <a href="#" class="btn btn-primary">View more</a>
+        <span class="badge rounded-pill bg-danger mx-3" *ngIf="showBadge"
+          >{{hotel.price | currency}}</span
+        >
+      </div>
+    </div>
+  </div>
+</div>
